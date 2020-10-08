@@ -9,6 +9,9 @@ assignees: ''
 
 ISSUE
 
+- 이슈 내용을 적어주세요
+- 이슈 내용을 적어주세요
+
 Group: `client`, `server`
 Type: bug, feature, delete
 Detail: fix actions from client redux
