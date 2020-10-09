@@ -7,14 +7,9 @@ assignees: ''
 project: 'Pily'
 
 ---
-
-ISSUE
-
-- 이슈 내용을 적어주세요
-
 Group: `server`
 Type:feature
-Detail: 'fill me'
+Detail: fill me
 
 TODO
 - [ ] Job1 : 
