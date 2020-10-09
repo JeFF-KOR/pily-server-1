@@ -1,6 +1,6 @@
 ---
-name: Task Card
-about: 이슈 테스크 카드 양식입니다.
+name: feature
+about: 이슈 테스크 카드 기능부분 기본 양식입니다.
 title: '[feature]'
 labels: 'group: server'
 assignees: ''
