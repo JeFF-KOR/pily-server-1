@@ -9,10 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       magazine_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Magazines'
+          },
+          key: 'id'
+        }
       },
       category_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Categories'
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

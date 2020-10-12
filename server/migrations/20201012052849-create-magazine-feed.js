@@ -9,10 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       magazine_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Magazines'
+          },
+          key: 'id'
+        }
       },
       feed_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Feeds'
+          },
+          key: 'id'
+        }
       },
       position_x: {
         type: Sequelize.FLOAT
