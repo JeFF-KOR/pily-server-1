@@ -11,13 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      })
     }
   };
   Feed.init({
-    user_id: DataTypes.INTEGER,
-    title: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     subTitle: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     location_x: DataTypes.FLOAT,
     location_y: DataTypes.FLOAT,
     location_name: DataTypes.STRING

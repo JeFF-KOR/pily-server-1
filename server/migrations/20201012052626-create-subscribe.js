@@ -15,7 +15,8 @@ module.exports = {
             tableName: 'Users'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       author_user_id: {
         type: Sequelize.INTEGER,
@@ -24,7 +25,8 @@ module.exports = {
             tableName: 'Users'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -11,11 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
+      this.belongsTo(models.User, {
+        foreignKey: 'author_user_id'
+      });
     }
   };
   Subscribe.init({
-    user_id: DataTypes.INTEGER,
-    author_user_id: DataTypes.INTEGER
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    author_user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Subscribe',

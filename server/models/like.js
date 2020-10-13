@@ -11,11 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
+      this.belongsTo(models.Magainze, {
+        foreignKey: 'magazine_id'
+      });
     }
   };
   Like.init({
-    user_id: DataTypes.INTEGER,
-    magazine_id: DataTypes.INTEGER
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    magazine_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Like',

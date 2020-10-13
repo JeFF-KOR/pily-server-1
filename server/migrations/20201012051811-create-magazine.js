@@ -15,10 +15,12 @@ module.exports = {
             tableName: 'Users'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       subTitle: {
         type: Sequelize.STRING
@@ -27,7 +29,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       vertical: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

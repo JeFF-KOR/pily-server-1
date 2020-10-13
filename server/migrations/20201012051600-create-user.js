@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       social_type: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       social_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       IMG: {
         type: Sequelize.STRING

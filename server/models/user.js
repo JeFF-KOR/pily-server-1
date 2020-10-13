@@ -14,9 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    social_type: DataTypes.INTEGER,
-    social_id: DataTypes.STRING,
-    username: DataTypes.STRING,
+    social_type: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    social_id: {
+      type: DataTypes.STRING,
+      allowNull: false 
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     IMG: DataTypes.STRING
   }, {
     sequelize,
