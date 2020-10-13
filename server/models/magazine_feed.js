@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Magazine, {
+        foreignKey: 'magazine_id'
+      });
+      this.belongsTo(models.Feed, {
+        foreignKey: 'feed_id'
+      })
     }
   };
   Magazine_Feed.init({
