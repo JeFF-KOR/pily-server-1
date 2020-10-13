@@ -15,7 +15,8 @@ module.exports = {
             tableName: 'Users'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       magazine_id: {
         type: Sequelize.INTEGER,
@@ -24,7 +25,8 @@ module.exports = {
             tableName: 'Magazines'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

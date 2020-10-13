@@ -14,8 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Magainze_Category.init({
-    magazine_id: DataTypes.INTEGER,
-    category_id: DataTypes.INTEGER
+    magazine_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Magainze_Category',

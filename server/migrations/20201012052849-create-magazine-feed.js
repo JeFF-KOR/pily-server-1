@@ -15,7 +15,8 @@ module.exports = {
             tableName: 'Magazines'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       feed_id: {
         type: Sequelize.INTEGER,
@@ -24,13 +25,16 @@ module.exports = {
             tableName: 'Feeds'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       position_x: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       position_y: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

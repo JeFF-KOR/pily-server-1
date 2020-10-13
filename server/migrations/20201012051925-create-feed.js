@@ -15,16 +15,19 @@ module.exports = {
             tableName: 'Users'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       subTitle: {
         type: Sequelize.STRING
       },
       content: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       location_x: {
         type: Sequelize.FLOAT

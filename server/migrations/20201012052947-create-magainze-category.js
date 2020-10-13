@@ -15,7 +15,8 @@ module.exports = {
             tableName: 'Magazines'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       category_id: {
         type: Sequelize.INTEGER,
@@ -24,7 +25,8 @@ module.exports = {
             tableName: 'Categories'
           },
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -14,10 +14,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Feed.init({
-    user_id: DataTypes.INTEGER,
-    title: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     subTitle: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     location_x: DataTypes.FLOAT,
     location_y: DataTypes.FLOAT,
     location_name: DataTypes.STRING
