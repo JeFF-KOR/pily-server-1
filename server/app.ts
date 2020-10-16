@@ -1,9 +1,12 @@
-const express = require("express");
+import express = require("express");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT;
-const session = require("express-session");
-const cors = require("cors");
+import session = require("express-session");
+import cors = require("cors");
+
+import DB = require('./models');
+const { User } = DB
 
 app.use(session({
   secret: process.env.SECRET,
@@ -18,6 +21,11 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Listening on ${port} port...`);
+  User.create({
+    social_type: 2,
+    social_id: '1234141234',
+    username: 'pig-cola'
+  })
 });
 
 console.log();
