@@ -1,22 +1,20 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Feed extends Model {
+import { DataType, Model, ModelStatic, Sequelize } from 'sequelize';
+module.exports = (sequelize: Sequelize, DataTypes: { [x:string]: DataType; }) => {
+  class Magazine extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate(models: { [x:string]: ModelStatic<Model<any, any>>; }) {
       // define association here
       this.belongsTo(models.User, {
         foreignKey: 'user_id'
       })
     }
   };
-  Feed.init({
+  Magazine.init({
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -26,16 +24,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     subTitle: DataTypes.STRING,
-    content: {
-      type: DataTypes.STRING,
+    thumbnail: DataTypes.STRING,
+    vertical: {
+      type: DataTypes.BOOLEAN,
       allowNull: false
-    },
-    location_x: DataTypes.FLOAT,
-    location_y: DataTypes.FLOAT,
-    location_name: DataTypes.STRING
+    }
   }, {
     sequelize,
-    modelName: 'Feed',
+    modelName: 'Magazine',
   });
-  return Feed;
+  return Magazine;
 };
