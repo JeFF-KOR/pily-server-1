@@ -23,7 +23,7 @@ route.get('/google', passport.authenticate('google'),
   }
 )
 
-route.get('/kakao?id', passport.authenticate('kakao'),
+route.get('/kakao', passport.authenticate('kakao'),
   async function (req, res) {
     let user: any = { ...req.user }
     let result = await User.findOne({
