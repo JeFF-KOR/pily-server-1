@@ -41,7 +41,6 @@ fs
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
-    console.log(modelName);
     db[modelName].associate(db);
   }
 });
@@ -49,4 +48,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export = db;
+export default db;
