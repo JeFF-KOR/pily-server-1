@@ -10,6 +10,8 @@ const { User, Magazine } = DB
 /* 아 이렇게 하는거구나 */
 import getProfile from "./controllers/user/getProfile";
 import getUser from "./controllers/user/getUser";
+import specifyUsername from "./controllers/user/specifyUsername";
+
 app.use(session({
   secret: process.env.SECRET,
   cookie: { secure: false }
@@ -22,6 +24,8 @@ app.get("/", (req, res) => {
 });
 app.get("/test/:id", getProfile);
 app.get("/user", getUser);
+app.get("/user/auth/nickname/:id", specifyUsername);
+
 
 app.listen(port, () => {
   console.log(`Listening on ${port} port...`);
