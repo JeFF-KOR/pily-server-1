@@ -11,7 +11,6 @@ import oauth from './routes/oauth'
 
 import DB from './models';
 import { Model } from "sequelize/types";
-import { Mode } from "fs";
 const { User } = DB
 const social_type = {
   google: 1,
