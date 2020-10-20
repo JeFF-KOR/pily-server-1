@@ -12,7 +12,6 @@ import user from "./routes/user";
 
 import DB from './models';
 import { Model } from "sequelize/types";
-
 const { User } = DB
 const social_type = {
   google: 1,

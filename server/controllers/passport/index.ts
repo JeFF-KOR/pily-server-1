@@ -47,21 +47,21 @@ passport.use(new Google({
   process.nextTick(() => done(null, profile))
 }))
 
-// passport.use(new Kakao({
-//   clientID: KclientID,
-//   clientSecret: KclientSecret,
-//   callbackURL: '/oauth/kakao'
-// }, function(accessToken, refreshToken, profile, done) {
-//   process.nextTick(() => done(null, profile))
-// }))
+passport.use(new Kakao({
+  clientID: KclientID,
+  clientSecret: KclientSecret,
+  callbackURL: '/oauth/kakao'
+}, function (accessToken, refreshToken, profile, done) {
+  process.nextTick(() => done(null, profile))
+}))
 
-// passport.use(new Naver({
-//   clientID: NclientID,
-//   clientSecret: NclientSecret,
-//   callbackURL: '/oauth/naver'
-// }, function(accessToken, refreshToken, profile, done) {
-//   process.nextTick(() => done(null, profile))
-// }))
+passport.use(new Naver({
+  clientID: NclientID,
+  clientSecret: NclientSecret,
+  callbackURL: '/oauth/naver'
+}, function (accessToken, refreshToken, profile, done) {
+  process.nextTick(() => done(null, profile))
+}))
 
 
 export default passport;
