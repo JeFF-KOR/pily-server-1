@@ -1,10 +1,7 @@
-import * as db from '../../models';
+import db from '../../models';
 import { Request, Response } from "express";
 const { User, Magazine } = db;
 
-/* bodyParser를 안써서 body.id를 읽을 수 없었다.
-  get 요청이니까 바디가 없다
-*/
 const getProfile = async (req: Request, res: Response) => {
   try {
     const getProfiles = await User.findOne({ where: { id: req.params.id } });

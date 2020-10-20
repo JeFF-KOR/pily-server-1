@@ -23,12 +23,12 @@ const social_type = {
   naver: 3
 }
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   // console.log(user);
   done(null, user);
 })
 
-passport.deserializeUser(async function(user:any, done) {
+passport.deserializeUser(async function (user: any, done) {
   let result = await User.findOne({
     where: {
       social_id: user.id,
@@ -36,32 +36,32 @@ passport.deserializeUser(async function(user:any, done) {
     }
   })
   console.log(user.id, user.provider)
-  done(null, {info: user, exist: !!result})
+  done(null, { info: user, exist: !!result })
 })
 
 passport.use(new Google({
   clientID: GclientID,
   clientSecret: GclientSecret,
   callbackURL: '/oauth/google'
-}, function(accessToken, refreshToken, profile, done) {
+}, function (accessToken, refreshToken, profile, done) {
   process.nextTick(() => done(null, profile))
 }))
 
-passport.use(new Kakao({
-  clientID: KclientID,
-  clientSecret: KclientSecret,
-  callbackURL: '/oauth/kakao'
-}, function(accessToken, refreshToken, profile, done) {
-  process.nextTick(() => done(null, profile))
-}))
+// passport.use(new Kakao({
+//   clientID: KclientID,
+//   clientSecret: KclientSecret,
+//   callbackURL: '/oauth/kakao'
+// }, function(accessToken, refreshToken, profile, done) {
+//   process.nextTick(() => done(null, profile))
+// }))
 
-passport.use(new Naver({
-  clientID: NclientID,
-  clientSecret: NclientSecret,
-  callbackURL: '/oauth/naver'
-}, function(accessToken, refreshToken, profile, done) {
-  process.nextTick(() => done(null, profile))
-}))
+// passport.use(new Naver({
+//   clientID: NclientID,
+//   clientSecret: NclientSecret,
+//   callbackURL: '/oauth/naver'
+// }, function(accessToken, refreshToken, profile, done) {
+//   process.nextTick(() => done(null, profile))
+// }))
 
 
 export default passport;

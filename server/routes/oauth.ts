@@ -58,4 +58,4 @@ route.get('/', (req, res) => {
   }
 })
 
-export default route 
+export default route; 

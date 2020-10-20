@@ -8,13 +8,10 @@ import bodyparser = require('body-parser');
 import passport from './controllers/passport'
 import signin from './routes/signin'
 import oauth from './routes/oauth'
+import user from "./routes/user";
 
 import DB from './models';
 import { Model } from "sequelize/types";
-import getProfile from "./controllers/user/getProfile"
-import getUser from "./controllers/user/getUser"
-import specifyUsername from "./controllers/user/specifyUsername"
-
 
 const { User } = DB
 const social_type = {
@@ -42,11 +39,8 @@ app.get("/", (req, res) => {
   res.status(200).send(`Hello, World!`);
 });
 
-app.get("/test/:id", getProfile);
-app.get("/user", getUser);
-app.get("/user/auth/nickname/:id", specifyUsername);
 
-
+app.use("/user", user);
 app.use('/signin', signin);
 app.use('/oauth', oauth);
 app.get('/signout', (req, res) => {
