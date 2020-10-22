@@ -35,7 +35,6 @@ passport.deserializeUser(async function (user: any, done) {
       social_type: social_type[user.provider]
     }
   })
-  console.log(user.id, user.provider)
   done(null, { info: user, exist: !!result })
 })
 
