@@ -9,6 +9,7 @@ import passport from './controllers/passport'
 import signin from './routes/signin'
 import oauth from './routes/oauth'
 import user from "./routes/user";
+import magazine from "./routes/magazine";
 
 import DB from './models';
 import { Model } from "sequelize/types";
@@ -38,8 +39,8 @@ app.get("/", (req, res) => {
   res.status(200).send(`Hello, World!`);
 });
 
-
 app.use("/user", user);
+app.use("/magazine", magazine);
 app.use('/signin', signin);
 app.use('/oauth', oauth);
 app.get('/signout', (req, res) => {

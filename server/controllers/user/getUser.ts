@@ -4,8 +4,8 @@ import { Model } from 'sequelize/types';
 const { User } = db;
 // 내 프로필 검색
 const getUser = async (req: Request, res: Response) => {
-  let currUser: any = { info: {}, ...req.user };
   if (req.user) { // 로그인 검증을 하기 위해..
+    let currUser: any = { info: {}, ...req.user };
     console.log("req.user:", JSON.parse(JSON.stringify(req.user)));
     const searchUser: Model = await User.findOne({
       attributes: ["username", "IMG"],
