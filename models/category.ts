@@ -1,6 +1,6 @@
 'use strict';
 import { DataType, Model, ModelStatic, Sequelize } from 'sequelize';
-module.exports = (sequelize: Sequelize, DataTypes: { [x:string]: DataType; }) => {
+module.exports = (sequelize: Sequelize, DataTypes: { [x: string]: DataType; }) => {
   class Category extends Model {
     /**
      * Helper method for defining associations.

@@ -1,6 +1,6 @@
 'use strict';
 import { DataType, Model, Sequelize } from 'sequelize';
-module.exports = (sequelize: Sequelize, DataTypes: { [x:string]: DataType }) => {
+module.exports = (sequelize: Sequelize, DataTypes: { [x: string]: DataType }) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -18,7 +18,7 @@ module.exports = (sequelize: Sequelize, DataTypes: { [x:string]: DataType }) => 
     },
     social_id: {
       type: DataTypes.STRING,
-      allowNull: false 
+      allowNull: false
     },
     username: {
       type: DataTypes.STRING,

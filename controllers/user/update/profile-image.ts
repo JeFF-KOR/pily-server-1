@@ -37,9 +37,9 @@ export const upload = multer({
 
 const func = (req: Request, res: Response) => {
   try {
-    const file = <{location?:string}>req.file;
+    const file = <{ location?: string }>req.file;
     console.log(req.file);
-    res.status(200).json({location: file.location});
+    res.status(200).json({ location: file.location });
   } catch {
     res.status(500).json('error');
   }

@@ -10,3 +10,5 @@ module.exports = {
   port: database_port,
   "dialect": "mysql"
 }
+
+require("dotenv").config();

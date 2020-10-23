@@ -1,6 +1,6 @@
 import db from '../../models';
 import { Request, Response } from "express";
-import { Model } from 'sequelize/types';
+import { Model } from 'sequelize';
 const { User } = db;
 
 const specifyUsername = async (req: Request, res: Response) => {

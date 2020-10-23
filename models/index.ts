@@ -4,23 +4,23 @@ import { Sequelize, DataTypes, ModelType } from 'sequelize'
 import fs = require('fs');
 import path = require('path');
 const basename = path.basename(__filename);
-const config:config = require(__dirname + '/../config/config.js');
+const config: config = require(__dirname + '/../config/config.js');
 
-interface classModel extends ModelType{
-  associate?: (db:db) => void
+interface classModel extends ModelType {
+  associate?: (db: db) => void
 }
 
 interface db {
-  [x:string]: classModel ;
+  [x: string]: classModel;
   sequelize?: any;
   Sequelize?: any;
 }
 
 interface config {
-  [x:string]: string;
+  [x: string]: string;
 }
 
-const db:db = {};
+const db: db = {};
 
 let sequelize: Sequelize;
 if (config.use_env_variable) {
@@ -35,7 +35,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.ts');
   })
   .forEach(file => {
-    let model:classModel = require(path.join(__dirname, file))(sequelize, DataTypes);
+    let model: classModel = require(path.join(__dirname, file))(sequelize, DataTypes);
     db[model.name] = model;
   });
 
