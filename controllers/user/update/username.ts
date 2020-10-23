@@ -1,17 +1,18 @@
 import db from "../../../models";
 import { Request, Response } from 'express';
+import { social_type, user } from '../../helper'
 
 const { User } = db;
 
 const func = async (req: Request , res: Response) => {
   if (req.user) {
-    let info:any = {info:{}, ...req.user}.info;
-    let exist:boolean = {exist:false, ...req.user}.exist;
+    let user = <user>req.user
 
-    if (exist) {
+    if (user.exist) {
       let result = await User.findOne({
         where: {
-          username:info.username
+          socila_type:social_type[user.info.provider],
+          social_id: user.info.id
         }
       });
       await result.update({
