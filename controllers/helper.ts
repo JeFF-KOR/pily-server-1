@@ -1,5 +1,6 @@
 require('dotenv').config();
-import * as S3 from 'aws-sdk/clients/s3';
+import S3 from 'aws-sdk/clients/s3';
+import { Request, Response } from 'express';
 
 
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = process.env;
@@ -22,3 +23,9 @@ export const social_type = {
   kakao: 2,
   naver: 3
 }
+
+export type MulterKeyFn = (req: Express.Request, file: Express.Multer.File, callback: (error: any, key?: string) => void) => void;
+
+export type expressFn = (req: Request, res: Response) => void;
+
+export interface file { location?: string, Location?: string };
