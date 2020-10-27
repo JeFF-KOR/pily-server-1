@@ -1,4 +1,4 @@
-import magazineCtnl from "../controllers/magazine/likes";
+import magazineCtnl from "../controllers/user/likes";
 import * as express from 'express'
 const route = express.Router();
 

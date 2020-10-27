@@ -10,10 +10,18 @@ const social_type = {
 
 const like = async (req: Request, res: Response) => {
   if (req.user) {
+    let currUser: any = { info: {}, ...req.user };
+    let getUsers: any = await User.findOne({
+      where: {
+        social_id: currUser.info.id,
+        social_type: social_type[currUser.info.provider]
+      }
+    });
+    getUsers = JSON.parse(JSON.stringify(getUsers))
     const [likes, created] = await Like.findOrCreate({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: req.body.user_id
+        user_id: getUsers.id
       },
     });
 
@@ -31,18 +39,18 @@ const like = async (req: Request, res: Response) => {
 const unlike = async (req: Request, res: Response) => {
   if (req.user) {
     let currUser: any = { info: {}, ...req.user };
-    // user의 id 값을 얻는다(provider, id를 이용)
-    const getUsers = await User.findOne({
+    let getUsers: any = await User.findOne({
       where: {
         social_id: currUser.info.id,
         social_type: social_type[currUser.info.provider]
       }
     });
+    getUsers = JSON.parse(JSON.stringify(getUsers))
     const unlike: Model = await Like.findOne({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: getUsers
-      },
+        user_id: getUsers.id
+      }
     });
     if (unlike) {
       await unlike.destroy();
