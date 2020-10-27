@@ -1,6 +1,7 @@
 import db from '../../models';
 import { Request, Response } from "express";
 import { Model } from 'sequelize';
+import { user, expressFn } from "../helper"
 const { Like, User } = db;
 const social_type = {
   google: 1,
@@ -8,12 +9,13 @@ const social_type = {
   naver: 3
 }
 
-const like = async (req: Request, res: Response) => {
-  if (req.user) {
+const like: expressFn = async (req, res) => {
+  const user = <user>req.user;
+  if (user && user.exist) {
     const [likes, created] = await Like.findOrCreate({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: req.body.user_id
+        user_id: user.userInfo.id
       },
     });
 
@@ -23,26 +25,19 @@ const like = async (req: Request, res: Response) => {
       res.status(409).send("Failure to store like");
     }
   } else {
-    res.status(401).send("로그인이 필요합니다.");
+    res.status(404).send("로그인이 필요합니다.");
   }
 };
 
 // 좋아요 취소
-const unlike = async (req: Request, res: Response) => {
-  if (req.user) {
-    let currUser: any = { info: {}, ...req.user };
-    // user의 id 값을 얻는다(provider, id를 이용)
-    const getUsers = await User.findOne({
-      where: {
-        social_id: currUser.info.id,
-        social_type: social_type[currUser.info.provider]
-      }
-    });
+const unlike: expressFn = async (req, res) => {
+  const user = <user>req.user;
+  if (user && user.exist) {
     const unlike: Model = await Like.findOne({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: getUsers
-      },
+        user_id: user.userInfo.id
+      }
     });
     if (unlike) {
       await unlike.destroy();
@@ -51,7 +46,7 @@ const unlike = async (req: Request, res: Response) => {
       res.status(404).send("fail");
     }
   } else {
-    res.status(401).send("로그인이 필요합니다.");
+    res.status(404).send("로그인이 필요합니다.");
   }
 }
 

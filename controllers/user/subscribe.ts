@@ -11,15 +11,14 @@ const social_type = {
 /* 구독하기 */
 const subscribe = async (req: Request, res: Response) => {
 
+  res.status(404).json("failure");
+  res.status(201).json("success");
 };
 
 /* 구독 취소 */
 const unSubscribe = async (req: Request, res: Response) => {
-
-};
-
-const getSubscribeInfo = async (req: Request, res: Response) => {
-
+  res.status(404).json("failure");
+  res.status(201).json("success");
 };
 
 
