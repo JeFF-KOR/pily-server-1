@@ -1,18 +1,10 @@
-import db from "../../../models";
-import { social_type, user, expressFn, file } from '../../helper';
-
-const { User } = db;
+import { user, expressFn, file } from '../../helper';
 
 export const updateProfileIMG = <expressFn>(async (req, res) => {
   const file = <file>req.file;
   const user = <user>req.user;
-  let findUser = await User.findOne({
-    where: {
-      social_type: social_type[user.info.provider],
-      social_id: user.info.id
-    }
-  });
-  await findUser.update({
+  
+  await user.userInfo.update({
     IMG: file.location || file.Location
   });
   res.status(200).send();

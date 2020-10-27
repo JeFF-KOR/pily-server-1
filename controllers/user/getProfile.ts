@@ -1,12 +1,18 @@
 import db from '../../models';
 import { Request, Response } from "express";
+import qs from 'querystring';
+import { Model } from 'sequelize/types';
+
 const { User, Magazine } = db;
 // 남의 프로필 검색
 const getProfile = async (req: Request, res: Response) => {
-  const getProfiles = await User.findOne({ where: { username: req.params.username } });
-  let result = JSON.parse(JSON.stringify(getProfiles)); // *
-  console.log(result);
-  const getUserMagazine = await Magazine.findAll({ where: { user_id: result.id } });
+  
+  const getProfiles = await User.findOne({ where: { username: qs.unescape(req.params.username) } });
+  let getUserMagazine: Model[], result:any ;
+  if (getProfiles) {
+    result = JSON.parse(JSON.stringify(getProfiles));
+    getUserMagazine = await Magazine.findAll({ where: { user_id: result.id } });
+  }
   result.results = getUserMagazine;
 
   if (!getProfiles) {
