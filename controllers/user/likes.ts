@@ -1,6 +1,7 @@
 import db from '../../models';
 import { Request, Response } from "express";
 import { Model } from 'sequelize';
+import { user, expressFn } from "../helper"
 const { Like, User } = db;
 const social_type = {
   google: 1,
@@ -8,20 +9,13 @@ const social_type = {
   naver: 3
 }
 
-const like = async (req: Request, res: Response) => {
-  if (req.user) {
-    let currUser: any = { info: {}, ...req.user };
-    let getUsers: any = await User.findOne({
-      where: {
-        social_id: currUser.info.id,
-        social_type: social_type[currUser.info.provider]
-      }
-    });
-    getUsers = JSON.parse(JSON.stringify(getUsers))
+const like: expressFn = async (req, res) => {
+  const user = <user>req.user;
+  if (user && user.exist) {
     const [likes, created] = await Like.findOrCreate({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: getUsers.id
+        user_id: user.userInfo.id
       },
     });
 
@@ -36,20 +30,13 @@ const like = async (req: Request, res: Response) => {
 };
 
 // 좋아요 취소
-const unlike = async (req: Request, res: Response) => {
-  if (req.user) {
-    let currUser: any = { info: {}, ...req.user };
-    let getUsers: any = await User.findOne({
-      where: {
-        social_id: currUser.info.id,
-        social_type: social_type[currUser.info.provider]
-      }
-    });
-    getUsers = JSON.parse(JSON.stringify(getUsers))
+const unlike: expressFn = async (req, res) => {
+  const user = <user>req.user;
+  if (user && user.exist) {
     const unlike: Model = await Like.findOne({
       where: {
         magazine_id: req.body.magazineId,
-        user_id: getUsers.id
+        user_id: user.userInfo.id
       }
     });
     if (unlike) {
