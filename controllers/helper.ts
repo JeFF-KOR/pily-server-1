@@ -1,6 +1,7 @@
 require('dotenv').config();
 import S3 from 'aws-sdk/clients/s3';
 import { Request, Response } from 'express';
+import { Model } from 'sequelize';
 
 
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = process.env;
@@ -15,7 +16,14 @@ export interface user {
     id: string;
     provider: string;
   };
-  exist: boolean
+  exist: boolean,
+  userInfo: Model & {
+    id: number;
+    social_type: number;
+    social_id: string;
+    username: string;
+    IMG: string;
+  };
 }
 
 export const social_type = {

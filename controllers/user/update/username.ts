@@ -9,13 +9,7 @@ export const updateUsername = async (req: Request , res: Response) => {
     let user = <user>req.user
 
     if (user.exist) {
-      let result = await User.findOne({
-        where: {
-          socila_type:social_type[user.info.provider],
-          social_id: user.info.id
-        }
-      });
-      await result.update({
+      await user.userInfo.update({
         username: req.body.username
       });
       res.status(200).send();

@@ -30,7 +30,8 @@ module.exports = (sequelize: Sequelize, DataTypes: { INTEGER: DataType; STRING: 
     },
     location_x: DataTypes.FLOAT,
     location_y: DataTypes.FLOAT,
-    location_name: DataTypes.STRING
+    location_name: DataTypes.STRING,
+    stars: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Feed',
