@@ -35,7 +35,7 @@ passport.deserializeUser(async function (user: any, done) {
       social_type: social_type[user.provider]
     }
   })
-  done(null, { info: user, exist: !!result })
+  done(null, { info: user, exist: !!result, userInfo: result });
 })
 
 passport.use(new Google({

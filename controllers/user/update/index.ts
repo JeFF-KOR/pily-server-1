@@ -1,2 +1,2 @@
-export { default as updateProfileIMG, upload } from './profile-image';
-export { default as updateUsername } from './username';
+export { updateProfileIMG } from './profile-image';
+export { updateUsername } from './username';
