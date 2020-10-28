@@ -1,5 +1,5 @@
-import * as express from 'express'
-import passport from '../controllers/passport'
+import * as express from 'express';
+import passport from '../controllers/passport';
 import db from '../models';
 
 const { User } = db;
