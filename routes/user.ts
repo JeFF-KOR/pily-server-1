@@ -1,4 +1,4 @@
-import * as express from 'express'
+import * as express from 'express';
 const route = express.Router();
 import { getProfile, getUser, specifyUserName } from '../controllers/user';
 import likeController from '../controllers/user/likes';

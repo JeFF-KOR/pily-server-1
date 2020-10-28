@@ -1,8 +1,5 @@
-import magazineCtnl from "../controllers/user/likes";
-import * as express from 'express'
-const route = express.Router();
+import * as express from 'express';
 
-route.post("/like", magazineCtnl.like);
-route.post("/unlike", magazineCtnl.unlike);
+const route = express.Router();
 
 export default route;
