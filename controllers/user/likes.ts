@@ -1,5 +1,4 @@
 import db from '../../models';
-import { Request, Response } from "express";
 import { Model } from 'sequelize';
 import { user, expressFn } from "../helper"
 const { Like, User } = db;
