@@ -1,4 +1,4 @@
-import * as express from 'express'
+import * as express from 'express';
 import { updateProfileIMG, updateUsername } from '../controllers/user/update';
 import { resizeUpload } from '../controllers/multer';
 
