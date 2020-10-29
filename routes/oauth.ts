@@ -1,13 +1,9 @@
 import * as express from 'express';
 import passport from '../controllers/passport';
 import db from '../models';
+import { BASEURL_client, social_type, user } from '../controllers/helper';
 
 const { User } = db;
-const social_type = {
-  google: 1,
-  kakao: 2,
-  naver: 3
-}
 const route = express.Router();
 
 route.get('/google', passport.authenticate('google'),
@@ -19,7 +15,7 @@ route.get('/google', passport.authenticate('google'),
         social_type: social_type.google
       }
     })
-    res.redirect(`//localhost:3000/sign/${!!result}`);
+    res.redirect(`${BASEURL_client}/sign/${!!result}`);
   }
 )
 
@@ -32,7 +28,7 @@ route.get('/kakao', passport.authenticate('kakao'),
         social_type: social_type.kakao
       }
     })
-    res.redirect(`//localhost:3000/sign/${!!result}`);
+    res.redirect(`${BASEURL_client}/sign/${!!result}`);
   }
 )
 
@@ -45,14 +41,14 @@ route.get('/naver', passport.authenticate('naver'),
         social_type: social_type.naver
       }
     })
-    res.redirect(`//localhost:3000/sign/${!!result}`);
+    res.redirect(`${BASEURL_client}/sign/${!!result}`);
   }
 )
 
 route.get('/', (req, res) => {
   if (req.user) {
-    let temp: { exist: boolean } = { exist: false, ...req.user }
-    res.status(200).json({ exist: temp.exist });
+    let user = <user>req.user
+    res.status(200).json({ exist: user.exist });
   } else {
     res.status(200).json(false);
   }
