@@ -10,12 +10,15 @@ const getProfile = async (req: Request, res: Response) => {
   const user = <user>req.user;
   const getProfiles = await User.findOne({ where: { username: qs.unescape(req.params.username) } });
   let result:any ;
+  
   if (!getProfiles) {
     return res.status(404).send();
   }
+  
   result = JSON.parse(JSON.stringify(getProfiles));
   let getUserMagazine = await Magazine.findAll({ where: { user_id: result.id } });
   result.results = getUserMagazine;
+  result.isSubscribed = false;
 
   if (!(user && user.exist)) {
     return res.status(200).json(result);
