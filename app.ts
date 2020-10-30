@@ -1,7 +1,7 @@
 import express = require("express");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT;
+const { PORT:port, NODE_ENV } = process.env;
 import session = require("express-session");
 import cors = require("cors");
 import bodyparser = require('body-parser');
@@ -9,11 +9,18 @@ import passport from './controllers/passport'
 import { root, user, oauth, signin, feed, magazine } from './routes';
 
 
+const cookie = {
+  development: {
+    secure: false
+  },
+  product: { secure: true, sameSite: false }
+}
+
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(session({
   secret: process.env.SECRET,
-  cookie: { secure: false },
+  cookie: cookie[NODE_ENV],
   resave: false,
   saveUninitialized: false
 }));
