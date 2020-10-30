@@ -22,7 +22,7 @@ app.use(session({
   secret: process.env.SECRET,
   cookie: cookie[NODE_ENV],
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 app.use(cors({
   origin: 'http://localhost:3000',
