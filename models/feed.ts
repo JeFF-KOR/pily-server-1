@@ -28,8 +28,8 @@ module.exports = (sequelize: Sequelize, DataTypes: { INTEGER: DataType; STRING: 
       type: DataTypes.STRING,
       allowNull: false
     },
-    location_x: DataTypes.FLOAT,
-    location_y: DataTypes.FLOAT,
+    location_x: DataTypes.STRING,
+    location_y: DataTypes.STRING,
     location_name: DataTypes.STRING,
     stars: DataTypes.INTEGER
   }, {
