@@ -1,12 +1,8 @@
 import db from '../../models';
-import { Model } from 'sequelize';
+import { Model, Op, Sequelize } from 'sequelize';
 import { user, expressFn } from "../helper"
-const { Subscribe, User } = db;
-const social_type = {
-  google: 1,
-  kakao: 2,
-  naver: 3
-}
+const { Subscribe, User, Magazine } = db;
+const sequelize = <typeof Sequelize>db.sequelize
 
 /* 구독하기 */
 const subscribe: expressFn = async (req, res) => {
@@ -60,4 +56,27 @@ const unSubscribe: expressFn = async (req, res) => {
   }
 }
 
-export default { subscribe, unSubscribe }
+/* 내가 구독한 작가들의 이미지와, 이름을 가져오기 */
+const getSubscribeInfo: expressFn = async (req, res) => {
+  const user = <user>req.user;
+  if (user && user.exist) {
+    const getSubscribedAuthorInfo = await Subscribe.findAll({
+      where: { user_id: user.userInfo.id },
+      include: [{
+        model: User,
+        attributes: ["username", "IMG"]
+        // title: sequelize.where(sequelize.fn('lower', sequelize.col('title')), 'like', `%${query.query.toLowerCase()}%`)
+      }]
+    });
+    const result = JSON.parse(JSON.stringify(getSubscribedAuthorInfo));
+    console.log(result);
+    
+    if (!getSubscribedAuthorInfo) {
+      res.status(404).send("Not Found");
+    } else {
+      res.status(200).json("성공");
+    }
+  }
+}
+
+export default { subscribe, unSubscribe, getSubscribeInfo }
