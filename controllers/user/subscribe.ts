@@ -1,11 +1,10 @@
 import db from '../../models';
-import { Model, Op, Sequelize } from 'sequelize';
+import { Model } from 'sequelize';
 import { user, expressFn } from "../helper"
-const { Subscribe, User, Magazine } = db;
-const sequelize = <typeof Sequelize>db.sequelize
+const { Subscribe, User } = db;
 
 /* 구독하기 */
-const subscribe: expressFn = async (req, res) => {
+export const subscribe: expressFn = async (req, res) => {
   const user = <user>req.user;
   if (user && user.exist) {
     const getSubscribeUser = await User.findOne({ where: { username: req.body.username } });
@@ -34,7 +33,7 @@ const subscribe: expressFn = async (req, res) => {
 
 
 /* 구독 취소 */
-const unSubscribe: expressFn = async (req, res) => {
+export const unSubscribe: expressFn = async (req, res) => {
   const user = <user>req.user;
   if (user && user.exist) {
     const getUnSubscribeUser = await User.findOne({ where: { username: req.body.username } });
@@ -57,26 +56,28 @@ const unSubscribe: expressFn = async (req, res) => {
 }
 
 /* 내가 구독한 작가들의 이미지와, 이름을 가져오기 */
-const getSubscribeInfo: expressFn = async (req, res) => {
+export const getSubscribeInfo: expressFn = async (req, res) => {
   const user = <user>req.user;
-  if (user && user.exist) {
-    const getSubscribedAuthorInfo = await Subscribe.findAll({
-      where: { user_id: user.userInfo.id },
-      include: [{
-        model: User,
-        attributes: ["username", "IMG"]
-        // title: sequelize.where(sequelize.fn('lower', sequelize.col('title')), 'like', `%${query.query.toLowerCase()}%`)
-      }]
-    });
-    const result = JSON.parse(JSON.stringify(getSubscribedAuthorInfo));
-    console.log(result);
-    
-    if (!getSubscribedAuthorInfo) {
-      res.status(404).send("Not Found");
-    } else {
-      res.status(200).json("성공");
-    }
-  }
-}
 
-export default { subscribe, unSubscribe, getSubscribeInfo }
+  if (!(user && user.exist)) {
+    return res.status(404).send();
+  }
+
+  const authorInfo = await Subscribe.findAll({
+    attributes: [],
+    where: { user_id: user.userInfo.id },
+    include: [{
+      model: User,
+      as: 'User',
+      attributes: ["username", "IMG"]
+    }]
+  });
+
+  let results = JSON.parse(JSON.stringify(authorInfo));
+  results = results.reduce((acc, val) => {
+    acc.push(val.User);
+    return acc;
+  }, []);
+
+  res.status(200).json({ results });
+}
