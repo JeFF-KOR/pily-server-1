@@ -13,5 +13,6 @@ route.post("/like", likeController.like);
 route.post("/unlike", likeController.unlike);
 route.post("/subscribe", subscribeController.subscribe);
 route.post("/unsubscribe", subscribeController.unSubscribe);
+route.get("/subscribe/search", subscribeController.getSubscribeInfo);
 
 export default route;
