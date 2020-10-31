@@ -10,9 +10,11 @@ module.exports = (sequelize: Sequelize, DataTypes: { [x: string]: DataType; }) =
     static associate(models: { [x: string]: ModelStatic<Model<any, any>>; }) {
       // define association here
       this.belongsTo(models.User, {
+        as: 'follower',
         foreignKey: 'user_id'
       });
       this.belongsTo(models.User, {
+        as: 'User',
         foreignKey: 'author_user_id'
       });
     }
