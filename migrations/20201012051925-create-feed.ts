@@ -30,10 +30,10 @@ module.exports = {
         allowNull: false
       },
       location_x: {
-        type: Sequelize.FLOAT
+        type: Sequelize.STRING
       },
       location_y: {
-        type: Sequelize.FLOAT
+        type: Sequelize.STRING
       },
       location_name: {
         type: Sequelize.STRING

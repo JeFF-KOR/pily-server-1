@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-let { name = 'root', password, database = 'pily', host = '127.0.0.1', database_port = '3306' } = process.env
+let { userinfo = 'root', password, database = 'pily', host = '127.0.0.1', database_port = '3306' } = process.env
 
 module.exports = {
-  username: name,
+  username: userinfo,
   password,
   database,
   host,

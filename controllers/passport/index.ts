@@ -1,9 +1,10 @@
 import passport = require("passport");
 require('dotenv').config();
 import { OAuth2Strategy as Google } from "passport-google-oauth";
-// import { Strategy as Kakao } from "passport-kakao";
-// import { Strategy as Naver } from "passport-naver";
+import { Strategy as Kakao } from "passport-kakao";
+import { Strategy as Naver } from "passport-naver";
 import db from '../../models';
+import { BASEURL_server, social_type } from '../helper';
 
 const { User } = db;
 
@@ -16,12 +17,6 @@ const {
   NclientID,
   NclientSecret,
 } = process.env
-
-const social_type = {
-  google: 1,
-  kakao: 2,
-  naver: 3
-}
 
 passport.serializeUser(function (user, done) {
   // console.log(user);
@@ -41,26 +36,26 @@ passport.deserializeUser(async function (user: any, done) {
 passport.use(new Google({
   clientID: GclientID,
   clientSecret: GclientSecret,
-  callbackURL: '/oauth/google'
+  callbackURL: `${BASEURL_server}/oauth/google`
 }, function (accessToken, refreshToken, profile, done) {
   process.nextTick(() => done(null, profile))
 }))
 
-// passport.use(new Kakao({
-//   clientID: KclientID,
-//   clientSecret: KclientSecret,
-//   callbackURL: '/oauth/kakao'
-// }, function (accessToken, refreshToken, profile, done) {
-//   process.nextTick(() => done(null, profile))
-// }))
+passport.use(new Kakao({
+  clientID: KclientID,
+  clientSecret: KclientSecret,
+  callbackURL: `${BASEURL_server}/oauth/kakao`
+}, function (accessToken, refreshToken, profile, done) {
+  process.nextTick(() => done(null, profile))
+}))
 
-// passport.use(new Naver({
-//   clientID: NclientID,
-//   clientSecret: NclientSecret,
-//   callbackURL: '/oauth/naver'
-// }, function (accessToken, refreshToken, profile, done) {
-//   process.nextTick(() => done(null, profile))
-// }))
+passport.use(new Naver({
+  clientID: NclientID,
+  clientSecret: NclientSecret,
+  callbackURL: `${BASEURL_server}/oauth/naver`
+}, function (accessToken, refreshToken, profile, done) {
+  process.nextTick(() => done(null, profile))
+}))
 
 
 export default passport;
