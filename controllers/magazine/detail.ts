@@ -6,7 +6,11 @@ const { Magazine, User, Like, Subscribe, Feed, Magazine_Feed } = db;
 export const detail: expressFn = async (req, res) => {
   const user = <user>req.user;
   let magazineId = Number(req.params.id);
-  
+
+  if (Number.isNaN(magazineId)) {
+    return res.status(400).send();
+  }
+
   const magazine = await Magazine.findOne({
     where: {
       id: magazineId
