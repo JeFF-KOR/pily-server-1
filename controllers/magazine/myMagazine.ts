@@ -1,23 +1,25 @@
-import { Op, Model, WhereOptions } from 'sequelize';
+import { Model, Op, WhereOptions } from "sequelize";
 import db from "../../models";
 import { expressFn, user } from "../helper";
 
-const { Feed } = db;
+const { Magazine, User } = db;
 
 interface query {
+  category?: string | number;
   offset?: string | number;
   date?: string;
   query?: string;
   page?: string | number;
+  sort?: 'created_at' | 'like';
 }
 
-export const myFeed: expressFn = async (req, res) => {
+export const myMagazine:expressFn = async (req, res) => {
   const user = <user>req.user;
   const query = <query>req.query;
   query.page = query.page ? Number(query.page) : 1;
   query.offset = Number(query.offset);
   let where:WhereOptions = {};
-  
+
   if (!query.offset) {
     return res.status(400).send();
   }
@@ -62,8 +64,12 @@ export const myFeed: expressFn = async (req, res) => {
     }
   }
 
-  const result = await Feed.findAll({
-    where
+  const result = await Magazine.findAll({
+    where,
+    include: {
+      model: User,
+      attributes: [['username', 'author'], ['IMG', 'authorImg']]
+    }
   })
 
   let results: Model[] =  [];
