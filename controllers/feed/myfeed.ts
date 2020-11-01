@@ -1,5 +1,4 @@
-import { Model, WhereOptions } from "sequelize/types";
-import { Op } from 'sequelize';
+import { Op, Model, WhereOptions } from 'sequelize';
 import db from "../../models";
 import { expressFn, user } from "../helper";
 
