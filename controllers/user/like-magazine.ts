@@ -38,6 +38,10 @@ export const likeInfo: expressFn = async (req, res) => {
     return acc;
   }, []);
 
+  if (like.length === 0) {
+    return res.status(200).json({ results: [], max_count: like.length });
+  }
+
   const result = await Magazine.findAll({
     where: {
       id: {
