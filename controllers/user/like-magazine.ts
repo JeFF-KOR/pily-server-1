@@ -35,6 +35,7 @@ export const likeInfo: expressFn = async (req, res) => {
 
   like = like.reduce((acc, val) => {
     acc.push(val.magazine_id)
+    return acc;
   }, []);
 
   const result = await Magazine.findAll({
