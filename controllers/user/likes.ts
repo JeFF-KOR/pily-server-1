@@ -6,7 +6,6 @@ const { Like, User } = db;
 const like: expressFn = async (req, res) => {
   const user = <user>req.user;
   if (user && user.exist) {
-    console.log(req.body);
     const [likes, created] = await Like.findOrCreate({
       where: {
         magazine_id: req.body.magazineId,
