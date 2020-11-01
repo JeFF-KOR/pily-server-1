@@ -25,9 +25,17 @@ module.exports = (sequelize: Sequelize, DataTypes: { [x: string]: DataType; }) =
     },
     subTitle: DataTypes.STRING,
     thumbnail: DataTypes.STRING,
-    vertical: {
+    isVertical: {
       type: DataTypes.BOOLEAN,
       allowNull: false
+    },
+    grid: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    titleAlign: {
+      allowNull: false,
+      type: DataTypes.INTEGER
     }
   }, {
     sequelize,
