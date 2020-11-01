@@ -1,6 +1,6 @@
 import * as express from 'express';
 const route = express.Router();
-import { getProfile, getUser, specifyUserName } from '../controllers/user';
+import { getProfile, getUser, specifyUserName, likeInfo } from '../controllers/user';
 import likeController from '../controllers/user/likes';
 import { getSubscribeInfo, subscribe, unSubscribe } from "../controllers/user/subscribe";
 import update from './user-update';
@@ -14,5 +14,6 @@ route.post("/unlike", likeController.unlike);
 route.post("/subscribe", subscribe);
 route.post("/unsubscribe", unSubscribe);
 route.get("/subscribed/info", getSubscribeInfo);
+route.get("/like/info", likeInfo);
 
 export default route;

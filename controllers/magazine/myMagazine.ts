@@ -17,12 +17,13 @@ export const myMagazine:expressFn = async (req, res) => {
   const user = <user>req.user;
   const query = <query>req.query;
   query.page = query.page ? Number(query.page) : 1;
-  query.offset = Number(query.offset);
   let where:WhereOptions = {};
-
+  
   if (!query.offset) {
     return res.status(400).send();
   }
+  
+  query.offset = Number(query.offset);
   
   if (!(user && user.exist)) {
     return res.status(404).send();

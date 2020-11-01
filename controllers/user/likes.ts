@@ -2,11 +2,6 @@ import db from '../../models';
 import { Model } from 'sequelize';
 import { user, expressFn } from "../helper"
 const { Like, User } = db;
-const social_type = {
-  google: 1,
-  kakao: 2,
-  naver: 3
-}
 
 const like: expressFn = async (req, res) => {
   const user = <user>req.user;
