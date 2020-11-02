@@ -25,15 +25,7 @@ module.exports = (sequelize: Sequelize, DataTypes: { [x: string]: DataType; }) =
     feed_id: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    position_x: {
-      type: DataTypes.FLOAT,
-      allowNull: false
-    },
-    position_y: {
-      type: DataTypes.FLOAT,
-      allowNull: false
-    },
+    }
   }, {
     sequelize,
     modelName: 'Magazine_Feed',

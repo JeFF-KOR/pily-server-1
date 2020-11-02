@@ -28,7 +28,7 @@ module.exports = {
       thumbnail: {
         type: Sequelize.STRING
       },
-      vertical: {
+      isVertical: {
         type: Sequelize.BOOLEAN,
         allowNull: false
       },
@@ -39,6 +39,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      grid: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      titleAlign: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       }
     });
   },

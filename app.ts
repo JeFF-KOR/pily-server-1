@@ -1,25 +1,34 @@
 import express = require("express");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT;
+const { PORT:port, NODE_ENV } = process.env;
 import session = require("express-session");
 import cors = require("cors");
 import bodyparser = require('body-parser');
 import passport from './controllers/passport'
 import { root, user, oauth, signin, feed, magazine } from './routes';
+import { BASEURL_client } from './controllers/helper';
 
+
+const cookie = {
+  development: {
+    secure: false
+  },
+  product: { secure: true, sameSite: false }
+}
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
+app.use(cors({
+  origin: BASEURL_client,
+  credentials: true
+}));
 app.use(session({
   secret: process.env.SECRET,
-  cookie: { secure: false },
+  cookie: cookie[NODE_ENV],
   resave: false,
-  saveUninitialized: false
-}));
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
+  saveUninitialized: true,
+  proxy: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,6 +38,7 @@ app.use("/user", user);
 app.use('/signin', signin);
 app.use('/oauth', oauth);
 app.use('/feed', feed);
+app.use('/magazine', magazine);
 
 
 app.listen(port, () => {

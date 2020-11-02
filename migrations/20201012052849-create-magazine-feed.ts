@@ -28,14 +28,6 @@ module.exports = {
         },
         allowNull: false
       },
-      position_x: {
-        type: Sequelize.FLOAT,
-        allowNull: false
-      },
-      position_y: {
-        type: Sequelize.FLOAT,
-        allowNull: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

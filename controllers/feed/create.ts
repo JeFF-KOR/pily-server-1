@@ -31,5 +31,5 @@ export const createFeed:expressFn = async (req, res) => {
     return res.status(500).send();
   }
 
-  res.status(200).send();
+  res.status(201).send();
 }
